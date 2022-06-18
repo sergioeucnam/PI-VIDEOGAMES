@@ -1,8 +1,5 @@
-// const { router } = require('../app');
-// const { Router } = require('express');
-// const router = Router();
 const { Genre } = require('../db');
-const fetchAllGenres = require('../services/fethAllGenres.api');
+const fetchAllGenres = require('../services/fetchAllGenres.api');
 
 const populateGenreDataBase = async () => {
     try {
@@ -15,7 +12,7 @@ const populateGenreDataBase = async () => {
         console.log('Todos los generos han sido cargados');
         return results;
     } catch (error) {
-        console.log(error);
+        next(error)
     }
 }
 
