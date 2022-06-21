@@ -6,6 +6,7 @@ const populateGenreDataBase = async () => {
         let results = await fetchAllGenres()
         results.forEach(genre => {
             Genre.create({
+                id: genre.id,
                 name: genre.name
             })
         });

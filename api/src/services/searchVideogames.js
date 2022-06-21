@@ -1,16 +1,55 @@
 const { default: axios } = require("axios");
+const joinAllGames = require('../services/fetchAllVideogames');
+const { Videogame, Genre } = require('../db')
 const API_KEY = '050bf79b16c847dba27fd3e0a3d6b535'
 
-const searchGame = async (req, res) => {
-    try {
-        const { name } = req.params
-        console.log('Se a buscado ', name);
-        const games = await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
-        const data = games.data.results
-        // return data
-        res.status(201).json({ data })
-    } catch (error) {
-        next(error)
+const searchGame = async (req, res, next) => {
+    const { name } = req.query
+    if (name) {
+        try {
+            const dbInfo = await Videogame.findAll({
+                where: {
+                    name: name,
+                },
+                include: {
+                    model: Genre,
+                }
+            })
+            if (dbInfo != 0) {
+                let resDb = dbInfo.map(ge => {
+                    return {
+                        id: ge.id,
+                        name: ge.name,
+                        description: ge.description,
+                        platforms: ge.platforms,
+                        releaseDate: ge.releaseDate,
+                        rating: ge.rating,
+                        image: ge.image,
+                        genre: ge.genre
+                    }
+                })
+                res.json(resDb)
+            } else {
+                console.log('Se a buscado por query', name);
+                const games = await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
+                const data = games.data.results
+                // return data
+                res.status(201).json({ data })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        try {
+            const allGames = await joinAllGames()
+            res.json(allGames)
+        } catch (error) {
+            next(error)
+            console.log('se rompio mi rey');
+        }
+        // return await fetchAllVideogames()
+        // console.log(await fetchAllVideogames());
     }
 }
 module.exports = searchGame;
+

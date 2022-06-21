@@ -1,11 +1,11 @@
-const { UUIDV4 } = require('sequelize')
 const { DataTypes } = require('sequelize')
 module.exports = (sequelize) => {
     sequelize.define('genre', {
         id: {
-            type: DataTypes.UUID,
-            defaultValue: UUIDV4,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
+            unique: true
         },
         name: {
             type: DataTypes.STRING,
