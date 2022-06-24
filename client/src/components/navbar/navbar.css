@@ -1,0 +1,33 @@
+.soy-la-navbar {
+    color: white;
+    width: fit-content;
+    height: auto;
+    font-size: 2rem;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+}
+
+.navbar-container {
+    background-color: indigo;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+}
+
+.navbar-content {
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    margin: 1rem;
+    padding: auto;
+    display: flex;
+    color: white;
+    font-size: 0.5em;
+    user-select: none;
+}
+
+.navbar-content .navbar-links {
+    color: white;
+    font-size: 2em;
+}

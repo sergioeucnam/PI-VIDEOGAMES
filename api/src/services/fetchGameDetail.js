@@ -23,11 +23,19 @@ const gameDetails = async (req, res, next) => {
         try {
             console.log('se ha buscado por ID en la api: ', idVideogame);
             const details = await axios(`https://api.rawg.io/api/games/${idVideogame}?key=${API_KEY}`)
-            // console.log(details);
-            const data = details.data
+            gameID = {
+                id: details.data.id,
+                name: details.data.name,
+                description: details.data.description_raw,
+                image: details.data.background_image,
+                platforms: details.data.platforms.map(platform => platform.platform.name),
+                releaseDate: details.data.released,
+                rating: details.data.rating,
+            }
+
             // return data
-            res.status(201).json({ data })
-            // console.log(data);
+            res.status(201).json({ gameID })
+            // console.log(gameID);
         } catch (error) {
             console.log('estamos en el catch mi rey');
             res.status(500).send(' no se encontro tu jueguito bobi')

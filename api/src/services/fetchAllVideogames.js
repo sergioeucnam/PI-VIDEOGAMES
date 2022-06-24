@@ -4,10 +4,11 @@ const { Videogame, Genre } = require('../db')
 //&page_size=100
 const fetchAllVideogames = async (req, res, next) => {
     try {
-        const getGame = await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=100`)
+        const getGame = await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=20`)
         let game = getGame.data.results;
         game = game.map((result) => {
             return {
+                id: result.id,
                 name: result.name,
                 image: result.background_image,
                 genres: result.genres.map((genre) => genre.name)
@@ -35,11 +36,11 @@ const getDbInfo = async () => {
 }
 const joinAllGames = async () => {
     let dbData = await getDbInfo();
-    console.log(dbData);
+    console.log('data de la db', dbData);
     let apiData = await fetchAllVideogames();
-    console.log(fetchAllVideogames);
+    // console.log(fetchAllVideogames);
     let joined = dbData.concat(apiData)
-    console.log(joined);
+    // console.log(joined);
     return joined;
 }
 module.exports = joinAllGames;

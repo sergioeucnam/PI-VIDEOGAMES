@@ -1,0 +1,50 @@
+.game-container {
+    width: 300px;
+    height: 350px;
+    background-color: rgb(255, 196, 0);
+    padding: 5px;
+    margin-top: 20px;
+    margin-right: 10px;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: white 0px 0px 10px;
+
+
+    flex-direction: column;
+}
+
+/* .game-container {
+    width: 100%;
+    margin: auto;
+} */
+
+.game-container .game-title {
+    margin-top: 10px;
+}
+
+.game-container .game-rating {
+    margin-top: 10px;
+}
+
+.game-container .genres-info {
+    margin-top: 10px;
+}
+
+.game-container .game-image {
+    width: 243px;
+    height: 136px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.button-generic-cards {
+    margin-top: 20px;
+    font-size: 1.5em;
+    border-radius: 25px;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+}

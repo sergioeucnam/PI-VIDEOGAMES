@@ -1,0 +1,23 @@
+/* .games-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 320px));
+    gap: 1px;
+    overflow: hidden;
+    background-image: url('../firstScreen/423137.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+.games-container {
+    width: 95vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(350px, auto);
+    grid-gap: 20px;
+    gap: 15px;
+    padding: 20px;
+    grid-auto-flow: dense;
+    margin-bottom: 5rem;
+}

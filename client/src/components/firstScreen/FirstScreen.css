@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.caja-padre {
+    background-image: url(../firstScreen/423137.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja-contenedor {
+    width: 100%;
+    color: white;
+    align-items: center;
+    font-size: 50px;
+
+}
+
+.soyElButton {
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
+    padding: 15px 32px;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 12px 16px 0 rgba(247, 243, 243, 0.877), 0 17px 50px 0 rgba(255, 255, 255, 0.19);
+    border-radius: 25px;
+    user-select: none;
+}
+
+.soyElButton:hover {
+    background-color: rgb(31, 29, 29);
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.soyElButton:active {
+    background-color: rgb(31, 29, 29);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}

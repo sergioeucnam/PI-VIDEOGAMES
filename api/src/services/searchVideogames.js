@@ -33,8 +33,18 @@ const searchGame = async (req, res, next) => {
                 console.log('Se a buscado por query', name);
                 const games = await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
                 const data = games.data.results
-                // return data
-                res.status(201).json({ data })
+                const mapeo = data.map((game) => {
+                    return {
+                        id: game.id,
+                        name: game.name,
+                        description: game.description_raw,
+                        image: game.background_image,
+                        platforms: game.platforms.map(platform => platform.platform.name),
+                        releaseDate: game.released,
+                        rating: game.rating,
+                    }
+                })
+                res.status(201).json({ mapeo })
             }
         } catch (error) {
             console.log(error);
