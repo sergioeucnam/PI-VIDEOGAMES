@@ -1,5 +1,7 @@
 //custom hook to validate a form
 import { useState } from "react"
+import { createGame } from "../../actions/actions"
+import axios from "axios"
 
 export function useForm(initialForm, callback) {
     const [form, setForm] = useState(initialForm)
@@ -39,16 +41,16 @@ export function useForm(initialForm, callback) {
                 rating: e.target.value
             })
         }
-        else if (e.target.name === 'genres') {
+        else if (e.target.name === 'genre') {
             if (e.target.checked) {
                 setForm({
                     ...form,
-                    genres: [...form.genres, e.target.value]
+                    genre: [...form.genre, e.target.value]
                 })
             } else {
                 setForm({
                     ...form,
-                    genres: form.genres.filter(genre => genre !== e.target.value)
+                    genre: form.genre.filter(genre => genre !== e.target.value)
                 })
             }
         }
@@ -59,7 +61,51 @@ export function useForm(initialForm, callback) {
             })
         }
     }
-    const handleSubmit = (e) => { }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setError(callback(form))
+        console.log('esto seria el form', form);
+        if (Object.keys(error).length === 0) {
+            axios.post('http://localhost:3001/videogames', {
+                // form
+
+                "name": "petro 207770",
+                "description": "bbbbbbbbbbbbbb",
+                "platforms": ["PC", "Xbox"],
+                "releaseDate": "30/04/1999",
+                "rating": 2,
+                "genre": ["59", "14"]
+
+            }).then(res => console.log('soy la res data', res.data))
+            alert("Game added")
+            console.log('form', form);
+        } else {
+            return
+        }
+        // setIsSubmitting(true)
+        // setError({})
+        // setResponse(null)
+        // console.table(form);
+        // axios.post('http://localhost:3001/videogames', {
+        //     // form
+        //     "name": "Metro 20330",
+        //     "description": "tttttttttttttt",
+        //     "platforms": ["PC", "Xbox"],
+        //     "releaseDate": "30/04/1999",
+        //     "rating": 5,
+        //     "genre": 1
+        // })
+        //     .then(res => {
+        //         setResponse(res)
+        //         // setIsSubmitting(false)
+        //         console.log('enviado pibe');
+        //     }).catch(err => {
+        //         setError(err.response.data)
+        //         // setIsSubmitting(false)
+        //     }
+        //     )
+
+    }
     const handleBlur = (e) => {
         handleChange(e)
         setError(callback(form))

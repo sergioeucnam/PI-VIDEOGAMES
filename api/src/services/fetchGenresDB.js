@@ -5,9 +5,10 @@ const fetchAllGenres = require('./fetchAllGenres.api.js')
 const getGenresDB = async (req, res, next) => {
     const genreCount = await Genre.count()
     if (!genreCount) {
-        await populateGenreDataBase()
-        await fetchAllGenres()
-        return res.status(200).json({ success: true })
+        // await populateGenreDataBase()
+        const genres = await populateGenreDataBase()
+        // await fetchAllGenres()
+        return res.status(200).json(genres)
     }
     else {
         const genreDB = await Genre.findAll()

@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     description: {
       type: DataTypes.TEXT,
@@ -23,13 +23,11 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
     },
     platforms: {
-      // type: DataTypes.ARRAY(DataTypes.STRING),
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      // type: DataTypes.STRING,
+      // allowNull: false
     },
-    image: {
-      type: DataTypes.STRING,
-    },
+
   },
     {
       timestamps: false

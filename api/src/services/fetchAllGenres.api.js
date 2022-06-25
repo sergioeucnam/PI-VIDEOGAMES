@@ -7,6 +7,7 @@ const fetchAllGenres = async (req, res) => {
         let data = genres.data.results
         data = data.map(genre => {
             return {
+                id: genre.id,
                 name: genre.name
             }
         })

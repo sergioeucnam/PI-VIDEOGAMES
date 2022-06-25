@@ -20,13 +20,6 @@ export const getAllGames = () => {
 
 export const getGamesDetail = (id) => {
     return async (dispatch) => {
-        // try {
-        //     const response = await axios(`http://localhost:3001/videogame/${id}`);
-        //     dispatch({ type: GET_VIDEOGAMES_DETAIL, payload: response.data });
-        //     // console.log('response data de action get game details', response.data);
-        // } catch (error) {
-        //     console.log(error, 'aca me rompi en la action');
-        // }
         const onSuccess = async (success) => {
             await dispatch({ type: RESET_DETAILS })
             await dispatch({ type: GET_VIDEOGAMES_DETAIL, payload: success });
@@ -62,10 +55,25 @@ export const searchGame = (name) => {
     }
 }
 
-export const createGame = (values) => {
-    return { type: CREATE_VIDEOGAME, payload: values }
+export const createGame = (form) => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.post(`http://localhost:3001/videogames`, form);
+            console.log('log de la action', response.data);
+            dispatch({ type: CREATE_VIDEOGAME, payload: response.data });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 export const getGenres = () => {
-    return { type: GET_GENRES }
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`http://localhost:3001/genres`);
+            dispatch({ type: GET_GENRES, payload: response.data });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
