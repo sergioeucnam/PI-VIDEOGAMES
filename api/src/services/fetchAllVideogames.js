@@ -4,43 +4,66 @@ const { Videogame, Genre } = require('../db')
 //&page_size=100
 const fetchAllVideogames = async (req, res, next) => {
     try {
-        const getGame = await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=20`)
-        let game = getGame.data.results;
-        game = game.map((result) => {
-            return {
-                id: result.id,
-                name: result.name,
-                image: result.background_image,
-                genres: result.genres.map((genre) => genre.name)
-            }
-        })
-        // res.status(201).json(game)
-        // console.log(game);
+        let page = 80;
+        let game = []
+        while (page <= 84) {
+            const getGame = await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=${page}`);
+            const games = getGame.data.results.map(jueguito => {
+                return {
+                    id: jueguito.id,
+                    name: jueguito.name,
+                    image: jueguito.background_image,
+                    genres: jueguito.genres.map((genre) => genre.name),
+                    rating: jueguito.rating
+                }
+            })
+            game = [...game, ...games]
+            page++
+        }
         return game;
     } catch (error) {
         next(error)
     }
+
+    // try {
+    //     const getGame = await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=${80}`);
+    //     let game = getGame.data.results;
+    //     game = game.map((result) => {
+    //         return {
+    //             id: result.id,
+    //             name: result.name,
+    //             image: result.background_image,
+    //             genres: result.genres.map((genre) => genre.name),
+    //             rating: result.rating
+    //         }
+    //     })
+    //     return game;
+    // } catch (error) {
+    //     next(error)
+    // }
 }
+
 const getDbInfo = async () => {
-    let dbData = await Videogame.findAll({
-        include: {
-            model: Genre,
-            attributes: ['id', 'name'],
-            through: {
-                attributes: []
-            }
+    let dbData = await Videogame.findAll({ include: Genre })
+    dbData = dbData.map((result) => {
+        return {
+            id: result.id,
+            name: result.name,
+            description: result.description,
+            platforms: result.platforms,
+            releaseDate: result.releaseDate,
+            rating: result.rating,
+            image: result.image,
+            genres: result.genres.map((genre) => genre.name)
         }
-    })
-    // console.log('db data asdfafafa', dbData);
+    }
+    )
     return dbData;
 }
 const joinAllGames = async () => {
     let dbData = await getDbInfo();
-    console.log('data de la db', dbData);
     let apiData = await fetchAllVideogames();
-    // console.log(fetchAllVideogames);
     let joined = dbData.concat(apiData)
-    // console.log(joined);
     return joined;
 }
 module.exports = joinAllGames;

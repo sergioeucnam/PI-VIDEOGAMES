@@ -2,12 +2,14 @@
 import { useState } from "react"
 import { createGame } from "../../actions/actions"
 import axios from "axios"
+import { useHistory } from "react-router-dom"
 
 export function useForm(initialForm, callback) {
     const [form, setForm] = useState(initialForm)
     const [error, setError] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [response, setResponse] = useState(null)
+    const history = useHistory()
 
     const handleChange = (e) => {
         if (e.target.name === 'platforms') {
@@ -60,54 +62,36 @@ export function useForm(initialForm, callback) {
                 releaseDate: e.target.value
             })
         }
+        else if (e.target.name === 'image') {
+            setForm({
+                ...form,
+                image: e.target.value
+            })
+        }
+        // return form
     }
     const handleSubmit = (e) => {
         e.preventDefault()
         setError(callback(form))
-        console.log('esto seria el form', form);
-        if (Object.keys(error).length === 0) {
-            axios.post('http://localhost:3001/videogames', {
-                // form
-
-                "name": "petro 207770",
-                "description": "bbbbbbbbbbbbbb",
-                "platforms": ["PC", "Xbox"],
-                "releaseDate": "30/04/1999",
-                "rating": 2,
-                "genre": ["59", "14"]
-
-            }).then(res => console.log('soy la res data', res.data))
-            alert("Game added")
-            console.log('form', form);
-        } else {
-            return
+        if (!form.name) {
+            setError({ ...error, name: 'Name is required' })
         }
-        // setIsSubmitting(true)
-        // setError({})
-        // setResponse(null)
-        // console.table(form);
-        // axios.post('http://localhost:3001/videogames', {
-        //     // form
-        //     "name": "Metro 20330",
-        //     "description": "tttttttttttttt",
-        //     "platforms": ["PC", "Xbox"],
-        //     "releaseDate": "30/04/1999",
-        //     "rating": 5,
-        //     "genre": 1
-        // })
-        //     .then(res => {
-        //         setResponse(res)
-        //         // setIsSubmitting(false)
-        //         console.log('enviado pibe');
-        //     }).catch(err => {
-        //         setError(err.response.data)
-        //         // setIsSubmitting(false)
-        //     }
-        //     )
+        else if (Object.keys(error).length === 0) {
+            alert("Game added")
+            history.push('/home')
+            setIsSubmitting(true)
+            axios.post('http://localhost:3001/videogames',
+                form
+            )
+                .then(res => console.log(form))
+                .catch(err => console.log(err.data))
+        } else {
+            return alert('Fill all required fields')
+        }
 
     }
     const handleBlur = (e) => {
-        handleChange(e)
+        // handleChange(e)
         setError(callback(form))
     }
 

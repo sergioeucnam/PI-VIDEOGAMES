@@ -42,9 +42,10 @@ const searchGame = async (req, res, next) => {
                         platforms: game.platforms.map(platform => platform.platform.name),
                         releaseDate: game.released,
                         rating: game.rating,
+                        genre: game.genres.map(genre => genre.name)
                     }
                 })
-                res.status(201).json({ mapeo })
+                res.status(201).json(mapeo)
             }
         } catch (error) {
             console.log(error);

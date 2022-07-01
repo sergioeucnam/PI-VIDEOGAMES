@@ -5,6 +5,10 @@ export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME';
 export const GET_GENRES = 'GET_GENRES';
 export const SEARCH_GAMES = 'SEARCH_GAMES';
 export const RESET_DETAILS = 'RESET_DETAILS';
+export const SORT_BY_RATING = 'SORT_BY_RATING';
+export const SORT_BY_CREATE = 'SORT_BY_CREATE';
+export const ORDER_GAMES = 'ORDER_GAMES';
+export const SORT_BY_GENRES = 'SORT_BY_GENRES';
 
 export const getAllGames = () => {
     return async (dispatch) => {
@@ -75,5 +79,34 @@ export const getGenres = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+}
+
+export const orderGames = (payload) => {
+    return {
+        type: ORDER_GAMES,
+        payload,
+    }
+}
+
+export const sortByCreate = (payload) => {
+    return {
+        type: SORT_BY_CREATE,
+        payload,
+    }
+}
+
+export const sortByGenres = (payload) => {
+    return {
+        type: SORT_BY_GENRES,
+        payload,
+    }
+
+}
+
+export const sortByRating = (payload) => {
+    return {
+        type: SORT_BY_RATING,
+        payload,
     }
 }

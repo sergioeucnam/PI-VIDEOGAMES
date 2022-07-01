@@ -5,10 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(../src/components/firstScreen/423137.jpg);
+  /* background-image: url(../src/components/firstScreen/423137.jpg); */
   background-size: cover;
-  background-repeat: no-repeat;
-
+  /* background-repeat: no-repeat; */
+  /* background-color: #0D95A8; */
+  /* opacity: 0.9; */
+  /* background-image: linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(30deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(150deg, #000000 12%, transparent 12.5%, transparent 87%, #000000 87.5%, #000000), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077), linear-gradient(60deg, #00000077 25%, transparent 25.5%, transparent 75%, #00000077 75%, #00000077); */
+  background-size: 58px 102px;
+  background-position: 0 0, 0 0, 29px 51px, 29px 51px, 0 0, 29px 51px;
+  background-color: #e5e5f7;
+  /* opacity: 0.8; */
+  background: linear-gradient(135deg, #EB7D4F55 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #EB7D4F 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #EB7D4F55 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #EB7D4F 25%, #e5e5f7 25%) 0px 0/ 20px 20px;
 }
 
 code {

@@ -6,19 +6,23 @@ const gameDetails = async (req, res, next) => {
     const { idVideogame } = req.params
     let gameID;
     if (idVideogame.length > 10) {
-        console.log('se busco en la database por id: ', idVideogame);
-        const gamesDB = await Videogame.findByPk(idVideogame, { include: Genre })
-        gameID = {
-            id: gamesDB.id,
-            name: gamesDB.name,
-            description: gamesDB.description,
-            platforms: gamesDB.platforms,
-            releaseDate: gamesDB.releaseDate,
-            rating: gamesDB.rating,
-            image: gamesDB.image,
-            genre: gamesDB.genre
+        try {
+            console.log('se busco en la database por id: ', idVideogame);
+            const gamesDB = await Videogame.findByPk(idVideogame, { include: Genre })
+            gameID = {
+                id: gamesDB.id,
+                name: gamesDB.name,
+                description: gamesDB.description,
+                platforms: gamesDB.platforms,
+                releaseDate: gamesDB.releaseDate,
+                rating: gamesDB.rating,
+                image: gamesDB.image,
+                genres: gamesDB.genres.map((genre) => genre.name)
+            }
+            res.json(gameID)
+        } catch (error) {
+            next(error)
         }
-        res.json(gameID)
     } else {
         try {
             console.log('se ha buscado por ID en la api: ', idVideogame);
@@ -34,7 +38,7 @@ const gameDetails = async (req, res, next) => {
             }
 
             // return data
-            res.status(201).json({ gameID })
+            res.status(201).json(gameID)
             // console.log(gameID);
         } catch (error) {
             console.log('estamos en el catch mi rey');

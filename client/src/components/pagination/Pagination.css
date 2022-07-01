@@ -1,0 +1,43 @@
+.pagination {
+
+    display: flex;
+    background-color: hotpink;
+    width: 100%;
+    padding: 2px;
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    align-items: flex-end;
+    justify-content: center;
+
+    position: fixed;
+    bottom: 0;
+}
+
+.pagination label {
+    background-color: teal;
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination-btn {
+    background-color: gold;
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+
+.pagination label.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination label:hover:not(.active) {
+    background-color: #ddd;
+}

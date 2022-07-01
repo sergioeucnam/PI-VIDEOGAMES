@@ -1,16 +1,5 @@
-/* .games-container {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 320px));
-    gap: 1px;
-    overflow: hidden;
-    background-image: url('../firstScreen/423137.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-} */
 .games-container {
+    margin-top: 4rem;
     width: 95vw;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

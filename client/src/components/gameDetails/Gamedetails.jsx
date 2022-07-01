@@ -5,10 +5,13 @@ import { getGamesDetail, resetDetail } from '../../actions/actions'
 import Navbar from '../navbar/Navbar'
 import { Link, useParams } from 'react-router-dom'
 import './Gamedetails.css'
+import Loading from '../Loading'
 const GameDetails = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
-    const allDetails = useSelector(state => state.gameDetails.gameID)
+    // const allDetails = useSelector(state => state.gameDetails.gameID)
+    // const lazyDetails = useSelector(state => state.gameDetails)
+    const allDetails = useSelector(state => state.gameDetails)
     console.log('log del game details', allDetails);
     useEffect(() => {
         dispatch(getGamesDetail(id))
@@ -17,26 +20,32 @@ const GameDetails = () => {
         }
     }, [])
     return (
-        allDetails ? (
+        allDetails.name ? (
             <>
                 <Navbar />
-                <div className='lazyCSS'>
-                    <h1>test</h1>
-                    <Link to='/home'>
-                        <button> IR ATRAS</button>
-                    </Link>
-                    {/* <h1 > {allDetails.id}</h1> */}
-                    <h1>{allDetails.name}</h1>
-                    <img src={allDetails.image} alt={allDetails.name} className='imagenBackground' />
-                    <h2> RELEASE DATE: {allDetails.releaseDate}</h2>
-                    <h2>RATING {allDetails.rating}</h2>
-                    {allDetails.platforms.map((platform) => (
-                        <h2>{platform.name}</h2>
-                    ))}
-                    <p>{allDetails.description}</p>
+                <div className='aber'>
+
+                    <div className='lazyCSS'>
+                        <div className='data-container'>
+                            <h1>{allDetails.name}</h1>
+                            {
+                                allDetails.image
+                                    ?
+                                    <img src={allDetails.image} alt={allDetails.name} className='imagenBackground' />
+                                    :
+                                    <img src='https://i.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0'
+                                        alt='name' className='imagenBackground' />}
+
+                            <h2> RELEASE DATE: {allDetails.releaseDate}</h2>
+                            <h2>RATING {allDetails.rating}</h2>
+                            <h2>{allDetails.platforms.map(p => p + "         ")}</h2>
+                            <p className='description'>{allDetails.description}</p>
+                        </div>
+                    </div>
                 </div>
             </>
-        ) : <h1 className='carnal'>estoi agarrando senal krnal</h1>
+        ) :
+            <Loading />
 
     )
 }

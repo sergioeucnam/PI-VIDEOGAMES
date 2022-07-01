@@ -1,7 +1,8 @@
 .game-container {
     width: 300px;
-    height: 350px;
-    background-color: rgb(255, 196, 0);
+    height: 400px;
+    /* background-color: rgb(255, 196, 0); */
+    background-color: #606599;
     padding: 5px;
     margin-top: 20px;
     margin-right: 10px;
@@ -16,31 +17,62 @@
     flex-direction: column;
 }
 
-/* .game-container {
-    width: 100%;
-    margin: auto;
-} */
+.game-container .card-Type {
+    color: rgb(0, 0, 0);
+    /* background-color: rgb(207, 7, 140); */
+    font-size: 16px;
+    font-weight: bold;
+    /* display: flex; */
+    /* align-items: center; */
+    /* text-align: left; */
+    text-align: justify;
+    /* flex-direction: row; */
+    /* column-count: 3;
+    column-gap: 10px; */
+
+    /* justify-content: space-between; */
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(10px, 2fr));
+    grid-auto-rows: minmax(10px, 2fr);
+    grid-auto-flow: dense; */
+    /* width: fit-content; */
+    /* width: 280px; */
+}
+
+.genres-info {
+    height: 200px;
+    width: 280px;
+    /* background-color: saddlebrown; */
+    column-count: 3;
+    column-gap: 10px;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
 
 .game-container .game-title {
+    /* background-color: royalblue; */
     margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
 }
 
-.game-container .game-rating {
-    margin-top: 10px;
-}
-
-.game-container .genres-info {
-    margin-top: 10px;
+.game-container .rating {
+    /* background-color: maroon; */
+    margin: 10px 0px 0px 0px;
 }
 
 .game-container .game-image {
+    /* background-color: red; */
     width: 243px;
     height: 136px;
     margin: auto;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    /* border: 1px red solid; */
 }
 
 .button-generic-cards {
+    background-color: #ADE691;
     margin-top: 20px;
     font-size: 1.5em;
     border-radius: 25px;
