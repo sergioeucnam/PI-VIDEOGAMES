@@ -9,25 +9,25 @@ p {
 
 .komtainer-fader {
     width: 100%;
-    height: 100vh;
+    height: 80vh;
 
 }
 
 
 
 .container-de-a-de-veras {
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 80%;
 
 }
 
 .the-last-of-the-conteiners1 {
-    background-color: pink;
+    /* background-color: pink; */
 
 }
 
 .the-last-of-the-conteiners2 {
-    background-color: indigo;
+    /* background-color: indigo; */
 }
 
 
@@ -36,8 +36,8 @@ p {
 .form-titles {
     color: rgb(0, 0, 0);
     font-size: 25px;
-    font-weight: bold;
-    background-color: red;
+    /* font-weight: bold; */
+    background-color: white;
     width: 70%;
 }
 
@@ -53,7 +53,7 @@ p {
 .form-container {
     display: flex;
     flex-direction: column;
-    background-color: aqua;
+    /* background-color: aqua; */
     align-items: center;
     justify-content: center;
     width: 100%;

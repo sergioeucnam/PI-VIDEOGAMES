@@ -2,7 +2,7 @@ import './navbar.css'
 import { NavLink } from 'react-router-dom'
 import SearchBar from '../searchbar/SearchBar'
 //regex from 0.1 to 1000 (1.0 to 1000.0)
-const regex = /^[0-9]{1,3}(\.?[0-9]{1})?$/
+// const regex = /^[0-9]{1,3}(\.?[0-9]{1})?$/
 
 export default function Navbar() {
 
